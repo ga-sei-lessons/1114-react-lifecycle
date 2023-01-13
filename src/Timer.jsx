@@ -11,7 +11,7 @@ export default class Timer extends Component {
     // componentDidMount runs when the element 'mount' aka renders for the first time
     // IMPORTANT runs only once
     componentDidMount() {
-        console.log('the timer component has mounted!')
+        // console.log('the timer component has mounted!')
         // here is where you mount things on the window or the document
         // create a setInterval that increments state in a cb function
         const intervalId = setInterval(() => {
@@ -23,19 +23,23 @@ export default class Timer extends Component {
             })
         }, 1000)
         // store that interval's id in state
+        this.setState({
+            intervalId: intervalId
+        })
     }
 
     // runs everytime the component re-renders
     // runs everytime state changes
     componentDidUpdate() {
-        console.log('the timer component has updated! (state has changed, a re-render has occured)')
+        // console.log('the timer component has updated! (state has changed, a re-render has occured)')
         // if you console.log state here, you will always see an accurate representation of state's current values
     }
 
     // if this component is removed from the virtualDOM tree, this method will run
     componentWillUnmount() {
         // clean up anything you might have mounted on the window or document
-        console.log('the timer component is unmounting')
+        // console.log('the timer component is unmounting')
+        clearInterval(this.state.intervalId)
     }
 
     render() {
